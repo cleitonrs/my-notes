@@ -1,7 +1,10 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { X } from 'lucide-react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
+import { Player } from "@lordicon/react"
+import ICON from "../note.json"
+
 
 interface NewNoteCardProps {
   onNoteCreated: (content: string) => void
@@ -10,6 +13,14 @@ interface NewNoteCardProps {
 let speechRecognition: SpeechRecognition | null = null
 
 export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
+
+  const playerRef = useRef<Player>(null)
+
+  useEffect(() => {
+    playerRef.current?.playFromBeginning()
+  }, [])
+
+
   const [shouldShowOnboarding, setShouldShowOnboard] = useState(true)
   const [isRecording, setIsRecording] = useState(false)
   const [content, setContent] = useState('')
@@ -88,9 +99,12 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
   return (
     <Dialog.Root onOpenChange={(open) => !open && setShouldShowOnboard(true)}>
       <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-200 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
-        <span className="text-sm font-medium text-slate-600">
-          Adicionar notas
-        </span>
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-medium text-slate-600">
+            Adicionar notas
+          </span>
+          <Player ref={playerRef} size={40} icon={ICON} />
+        </div>
         <p className="text-sm leading-6 text-slate-500">
           Grave uma nota em áudio que será convertida para texto automaticamente
         </p>

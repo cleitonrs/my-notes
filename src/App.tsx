@@ -1,8 +1,10 @@
 import { ChangeEvent, useState } from "react"
 import logo from "./assets/logo.svg"
-import Search from "./assets/search.svg"
 import { NewNoteCard } from "./components/NewNoteCard"
 import { NoteCard } from "./components/NoteCard"
+import { useEffect, useRef } from "react"
+import { Player } from "@lordicon/react"
+import ICON from "./search.json"
 
 interface Note {
   id: string
@@ -11,6 +13,13 @@ interface Note {
 }
 
 export function App() {
+
+  const playerRef = useRef<Player>(null)
+
+  useEffect(() => {
+    playerRef.current?.playFromBeginning()
+  }, [])
+
   const [search, setSearch] = useState('')
   const [notes, setNotes] = useState<Note[]>(() => {
     const notesOnStorage = localStorage.getItem('notes')
@@ -50,6 +59,8 @@ export function App() {
     const query = event.target.value
 
     setSearch(query)
+
+
   }
 
   const filteredNotes = search !== ''
@@ -57,12 +68,14 @@ export function App() {
       .includes(search.toLocaleLowerCase()))
     : notes
 
+
+
   return (
     <div className="max-w-6xl mx-auto my-12 space-y-6 px-5">
       <img src={logo} alt="Logo" />
 
       <form className="flex items-center justify-between gap-2">
-        <img className="size-10" src={Search} alt="search" />
+        <Player ref={playerRef} size={40} icon={ICON} state="in-search"/>
         <input
           type="text"
           placeholder="Busque em suas notas..."
