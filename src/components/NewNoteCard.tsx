@@ -46,7 +46,7 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
     const isSpeechRecognitionAPIAvailable = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
 
     if (!isSpeechRecognitionAPIAvailable) {
-      alert('Infelismente seu navagador não suporta a API de gravação!')
+      alert('Infelizmente seu navegador não suporta a API de gravação!')
       return
     }
 
@@ -87,36 +87,36 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
 
   return (
     <Dialog.Root onOpenChange={(open) => !open && setShouldShowOnboard(true)}>
-      <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-700 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
-        <span className="text-sm font-medium text-slate-200">
+      <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-200 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
+        <span className="text-sm font-medium text-slate-600">
           Adicionar notas
         </span>
-        <p className="text-sm leading-6 text-slate-400">
+        <p className="text-sm leading-6 text-slate-500">
           Grave uma nota em áudio que será convertida para texto automaticamente
         </p>
       </Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Overlay className="inset-0 fixed bg-black/50" />
-        <Dialog.Content className="fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-700 md:rounded-md flex flex-col outline-none">
+        <Dialog.Content className="fixed overflow-hidden inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-slate-200 md:rounded-md flex flex-col outline-none">
           <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 hover:text-slate-100">
             <X className="size-5" />
           </Dialog.Close>
 
           <form className="flex flex-1 flex-col">
             <div className="flex flex-1 flex-col gap-3 p-5">
-              <span className="text-sm font-medium text-slate-300">
+              <span className="text-sm font-medium text-slate-600">
                 Adicionar nota
               </span>
 
               {shouldShowOnboarding ? (
-                <p className="text-sm leading-6 text-slate-400">
-                  Comece <button type="button" onClick={handleStartRecord} className="font-medium text-lime-400 hover:underline">gravando uma nota</button> em áudio ou se preferir <button type="button" onClick={handleStartEditor} className="font-medium text-lime-400 hover:underline">utilize apenas texto</button>.
+                <p className="text-sm leading-6 text-slate-500">
+                  Comece <button type="button" onClick={handleStartRecord} className="font-medium text-lime-600 hover:underline">gravando uma nota</button> em áudio ou se preferir <button type="button" onClick={handleStartEditor} className="font-medium text-lime-600 hover:underline">utilize apenas texto</button>.
                 </p>
               ) : (
                 <textarea
                   autoFocus
-                  className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
+                  className="text-sm leading-6 text-slate-600 bg-transparent resize-none flex-1 outline-none"
                   onChange={handleContentChange}
                   value={content}
                 />

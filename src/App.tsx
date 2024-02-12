@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react"
 import logo from "./assets/logo.svg"
+import Search from "./assets/search.svg"
 import { NewNoteCard } from "./components/NewNoteCard"
 import { NoteCard } from "./components/NoteCard"
 
@@ -60,16 +61,17 @@ export function App() {
     <div className="max-w-6xl mx-auto my-12 space-y-6 px-5">
       <img src={logo} alt="Logo" />
 
-      <form className="w-full">
+      <form className="flex items-center justify-between gap-2">
+        <img className="size-10" src={Search} alt="search" />
         <input
           type="text"
           placeholder="Busque em suas notas..."
-          className="w-full bg-transparent text-3xl font-semibold tracking-tight outline-none placeholder:text-slate-500"
+          className="w-full bg-transparent md:text-3xl text-2xl font-semibold tracking-tight outline-none placeholder:text-slate-100"
           onChange={handleSearch}
         />
       </form>
 
-      <div className="h-px bg-slate-700" />
+      <div className="h-px bg-lime-400" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard onNoteCreated={onNoteCreated} />
