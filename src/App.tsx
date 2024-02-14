@@ -84,7 +84,7 @@ export function App() {
         />
       </form>
 
-      <div className="h-px bg-lime-400" />
+      <div className="h-px bg-slate-300" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard onNoteCreated={onNoteCreated} />
