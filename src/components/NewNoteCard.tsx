@@ -98,7 +98,7 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
 
   return (
     <Dialog.Root onOpenChange={(open) => !open && setShouldShowOnboard(true)}>
-      <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-200 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
+      <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-200 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none shadow-xl">
         <div className="w-full flex items-center justify-between">
           <span className="text-sm font-medium text-slate-600">
             Adicionar notas
